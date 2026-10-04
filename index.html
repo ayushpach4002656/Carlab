@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="CarLab — build dream cars, battle builds, guess cars, and build your virtual garage.">
+<meta name="theme-color" content="#08090c">
+<title>CarLab — Build. Battle. Flex.</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="bg-grid"></div>
+<header class="nav">
+  <a class="brand" href="#home"><span>CL</span> CarLab</a>
+  <nav><a href="#builder">Builder</a><a href="#battle">Battle</a><a href="#guess">Guess</a><a href="#garage">Garage</a></nav>
+  <button class="nav-cta" onclick="scrollToId('builder')">Build a car</button>
+</header>
+<main>
+<section id="home" class="hero">
+  <div class="hero-copy">
+    <div class="eyebrow">THE CAR ENTHUSIAST PLAYGROUND</div>
+    <h1>Build it.<br><em>Battle it.</em><br>Flex it.</h1>
+    <p>Turn your dream car into a score, challenge your friends, and build the ultimate virtual garage.</p>
+    <div class="hero-actions"><button class="primary" onclick="scrollToId('builder')">Start building <span>→</span></button><button class="ghost" onclick="scrollToId('battle')">Try a battle</button></div>
+    <div class="micro"><span>⚡</span> Free to play · No account required</div>
+  </div>
+  <div class="hero-car"><div class="car-glow"></div><div class="car-art"><div class="roof"></div><div class="window w1"></div><div class="window w2"></div><div class="body"></div><div class="wheel wheel1"></div><div class="wheel wheel2"></div><div class="light"></div></div><div class="plate">CARLAB</div></div>
+</section>
+<section class="stats"><div><strong>∞</strong><span>Build combinations</span></div><div><strong>4</strong><span>Ways to play</span></div><div><strong>$0</strong><span>To start</span></div></section>
+
+<section id="builder" class="section">
+  <div class="section-head"><div><div class="eyebrow">01 / BUILDER</div><h2>Build your dream car.</h2></div><p>Pick the base, spec the personality, then see what CarLab thinks.</p></div>
+  <div class="builder-grid">
+    <div class="panel controls">
+      <label>Base car<select id="base"></select></label>
+      <label>Drivetrain<select id="drive"><option value="RWD">RWD</option><option value="AWD">AWD</option><option value="FWD">FWD</option></select></label>
+      <label>Mission<select id="mission"><option value="speed">All-out speed</option><option value="looks">Looks first</option><option value="daily">Daily driver</option><option value="track">Track weapon</option></select></label>
+      <label>Style<select id="style"><option>OEM+</option><option>Street</option><option>Track</option><option>Luxury</option><option>Stealth</option></select></label>
+      <div class="build-options"><button class="chip active" data-up="engine">Engine tune</button><button class="chip" data-up="exhaust">Sport exhaust</button><button class="chip" data-up="wheels">Forged wheels</button></div>
+      <div class="budget-row"><span>Build budget</span><b id="budget">$100,000</b></div>
+      <input id="budgetSlider" type="range" min="30000" max="300000" step="5000" value="100000">
+      <button class="primary wide" onclick="saveBuild()">Save to garage</button>
+    </div>
+    <div class="panel result">
+      <div class="result-top"><span class="tag">CARLAB SCORE</span><span id="saved">NOT SAVED</span></div>
+      <div class="score-ring"><div><strong id="score">86</strong><span>/100</span></div></div>
+      <h3 id="verdict">Balanced menace.</h3><p id="verdictText">Fast enough to scare people, civilized enough to drive home.</p>
+      <div class="bars"><div><span>Performance</span><b><i id="perf"></i></b></div><div><span>Looks</span><b><i id="looks"></i></b></div><div><span>Daily</span><b><i id="daily"></i></b></div></div>
+      <button class="share" onclick="shareBuild()">↗ Share this build</button>
+    </div>
+  </div>
+</section>
+
+<section id="battle" class="section dark-section">
+  <div class="section-head"><div><div class="eyebrow">02 / BATTLE</div><h2>Which build wins?</h2></div><p>Choose two cars and run the matchup.</p></div>
+  <div class="battle-grid"><div class="panel battle-card"><span>CAR A</span><select id="carA"></select><div class="big-stat" id="statA">92</div><small>CARLAB SCORE</small></div><div class="vs">VS</div><div class="panel battle-card"><span>CAR B</span><select id="carB"></select><div class="big-stat" id="statB">91</div><small>CARLAB SCORE</small></div></div>
+  <button class="primary center" onclick="runBattle()">Run the battle ⚡</button><div id="battleResult" class="battle-result hidden"></div>
+</section>
+
+<section id="guess" class="section">
+  <div class="section-head"><div><div class="eyebrow">03 / GUESS</div><h2>Guess the car.</h2></div><p>One clue. Four choices. Keep your streak alive.</p></div>
+  <div class="panel quiz"><div class="quiz-meta"><span id="qCount">QUESTION 1</span><span>🔥 STREAK <b id="streak">0</b></span></div><div class="mystery-car">?</div><h3 id="clue"></h3><div class="answers" id="answers"></div><div id="quizFeedback"></div><button class="ghost next" onclick="nextQuestion()">Next →</button></div>
+</section>
+
+<section id="garage" class="section">
+  <div class="section-head"><div><div class="eyebrow">04 / GARAGE</div><h2>Your virtual garage.</h2></div><p>Saved locally on your device. No account needed.</p></div><div id="garageGrid" class="garage-grid"></div>
+</section>
+
+<section class="monetize"><div><div class="eyebrow">REVENUE-READY</div><h2>Free game.<br><em>Real business.</em></h2><p>This area is prepared for future approved automotive affiliates, sponsorships and unobtrusive advertising after CarLab earns traffic.</p></div><div class="ad-placeholder">FUTURE PARTNER / AD SPACE<br><small>No fake ad code. Add only after approval.</small></div></section>
+</main>
+<footer><div class="brand"><span>CL</span> CarLab</div><p>Build. Battle. Flex. <span id="year"></span></p><p class="fine">CarLab scores are entertainment ratings, not official manufacturer specifications.</p></footer>
+<script src="app.js"></script>
+</body></html>

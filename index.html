@@ -1,73 +1,109 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="CarLab — build dream cars, battle builds, guess cars, and build your virtual garage.">
-<meta name="theme-color" content="#08090c">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="CarLab — build dream cars, test builds, battle cars, collect a virtual garage, and chase daily challenges.">
+<meta name="theme-color" content="#07090d">
+<meta property="og:title" content="CarLab — Build. Battle. Flex.">
+<meta property="og:description" content="Build your dream car, earn a CarLab score, battle friends, and grow your garage.">
 <title>CarLab — Build. Battle. Flex.</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<div class="bg-grid"></div>
-<header class="nav">
-  <a class="brand" href="#home"><span>CL</span> CarLab</a>
-  <nav><a href="#builder">Builder</a><a href="#battle">Battle</a><a href="#guess">Guess</a><a href="#garage">Garage</a></nav>
-  <button class="nav-cta" onclick="scrollToId('builder')">Build a car</button>
+<div class="noise"></div><div class="cursor-glow" id="glow"></div>
+<header>
+<a class="logo" href="#home"><span>CL</span><b>CarLab</b><small>BETA</small></a>
+<nav><a href="#build">Build</a><a href="#challenge">Challenge</a><a href="#battle">Battle</a><a href="#games">Games</a><a href="#garage">Garage</a></nav>
+<div class="header-right"><span class="streak">🔥 <b id="headerStreak">0</b></span><button class="mini primary" onclick="go('build')">BUILD NOW</button></div>
 </header>
+
 <main>
 <section id="home" class="hero">
-  <div class="hero-copy">
-    <div class="eyebrow">THE CAR ENTHUSIAST PLAYGROUND</div>
-    <h1>Build it.<br><em>Battle it.</em><br>Flex it.</h1>
-    <p>Turn your dream car into a score, challenge your friends, and build the ultimate virtual garage.</p>
-    <div class="hero-actions"><button class="primary" onclick="scrollToId('builder')">Start building <span>→</span></button><button class="ghost" onclick="scrollToId('battle')">Try a battle</button></div>
-    <div class="micro"><span>⚡</span> Free to play · No account required</div>
-  </div>
-  <div class="hero-car"><div class="car-glow"></div><div class="car-art"><div class="roof"></div><div class="window w1"></div><div class="window w2"></div><div class="body"></div><div class="wheel wheel1"></div><div class="wheel wheel2"></div><div class="light"></div></div><div class="plate">CARLAB</div></div>
-</section>
-<section class="stats"><div><strong>∞</strong><span>Build combinations</span></div><div><strong>4</strong><span>Ways to play</span></div><div><strong>$0</strong><span>To start</span></div></section>
-
-<section id="builder" class="section">
-  <div class="section-head"><div><div class="eyebrow">01 / BUILDER</div><h2>Build your dream car.</h2></div><p>Pick the base, spec the personality, then see what CarLab thinks.</p></div>
-  <div class="builder-grid">
-    <div class="panel controls">
-      <label>Base car<select id="base"></select></label>
-      <label>Drivetrain<select id="drive"><option value="RWD">RWD</option><option value="AWD">AWD</option><option value="FWD">FWD</option></select></label>
-      <label>Mission<select id="mission"><option value="speed">All-out speed</option><option value="looks">Looks first</option><option value="daily">Daily driver</option><option value="track">Track weapon</option></select></label>
-      <label>Style<select id="style"><option>OEM+</option><option>Street</option><option>Track</option><option>Luxury</option><option>Stealth</option></select></label>
-      <div class="build-options"><button class="chip active" data-up="engine">Engine tune</button><button class="chip" data-up="exhaust">Sport exhaust</button><button class="chip" data-up="wheels">Forged wheels</button></div>
-      <div class="budget-row"><span>Build budget</span><b id="budget">$100,000</b></div>
-      <input id="budgetSlider" type="range" min="30000" max="300000" step="5000" value="100000">
-      <button class="primary wide" onclick="saveBuild()">Save to garage</button>
-    </div>
-    <div class="panel result">
-      <div class="result-top"><span class="tag">CARLAB SCORE</span><span id="saved">NOT SAVED</span></div>
-      <div class="score-ring"><div><strong id="score">86</strong><span>/100</span></div></div>
-      <h3 id="verdict">Balanced menace.</h3><p id="verdictText">Fast enough to scare people, civilized enough to drive home.</p>
-      <div class="bars"><div><span>Performance</span><b><i id="perf"></i></b></div><div><span>Looks</span><b><i id="looks"></i></b></div><div><span>Daily</span><b><i id="daily"></i></b></div></div>
-      <button class="share" onclick="shareBuild()">↗ Share this build</button>
-    </div>
-  </div>
+<div class="hero-copy">
+<div class="kicker"><i></i> THE CAR ENTHUSIAST PLAYGROUND</div>
+<h1>YOUR GARAGE.<br><span>YOUR RULES.</span></h1>
+<p>Build absurd dream cars. Get judged by CarLab. Battle your friends. Chase daily challenges. Create a garage worth flexing.</p>
+<div class="actions"><button class="primary big" onclick="go('build')">BUILD YOUR FIRST CAR <b>→</b></button><button class="secondary big" onclick="go('challenge')">TODAY'S CHALLENGE</button></div>
+<div class="social-proof"><div class="avatars">🏎️ 🚗 🏁</div><div><b>Built for car people.</b><span>No signup. No boring configurator.</span></div></div>
+</div>
+<div class="hero-visual">
+<div class="speed-lines"></div><div class="halo"></div>
+<div class="supercar"><div class="roof"></div><div class="glass"></div><div class="body"></div><div class="splitter"></div><div class="wheel wleft"><i></i></div><div class="wheel wright"><i></i></div><div class="lamp"></div></div>
+<div class="floating-card fc1"><span>PERFORMANCE</span><b>94</b><i>▲ 7</i></div>
+<div class="floating-card fc2"><span>CARLAB SCORE</span><b>92</b><small>ELITE BUILD</small></div>
+<div class="floating-card fc3"><span>STYLE</span><b>96</b><i>TOP 5%</i></div>
+</div>
 </section>
 
-<section id="battle" class="section dark-section">
-  <div class="section-head"><div><div class="eyebrow">02 / BATTLE</div><h2>Which build wins?</h2></div><p>Choose two cars and run the matchup.</p></div>
-  <div class="battle-grid"><div class="panel battle-card"><span>CAR A</span><select id="carA"></select><div class="big-stat" id="statA">92</div><small>CARLAB SCORE</small></div><div class="vs">VS</div><div class="panel battle-card"><span>CAR B</span><select id="carB"></select><div class="big-stat" id="statB">91</div><small>CARLAB SCORE</small></div></div>
-  <button class="primary center" onclick="runBattle()">Run the battle ⚡</button><div id="battleResult" class="battle-result hidden"></div>
+<section class="ticker"><div>BUILD <i>✦</i> BATTLE <i>✦</i> FLEX <i>✦</i> MODIFY <i>✦</i> COLLECT <i>✦</i> COMPETE <i>✦</i> BUILD <i>✦</i> BATTLE <i>✦</i> FLEX</div></section>
+
+<section id="build" class="section">
+<div class="section-title"><div><span>01 — DREAM BUILDER</span><h2>MAKE IT <em>YOURS.</em></h2></div><p>Every choice changes your score. Build for speed, style, daily use—or pure chaos.</p></div>
+<div class="builder">
+<aside class="config">
+<div class="step car-picker-step"><label>01 / BASE CAR <b id="rosterCount"></b></label>
+<input id="carSearch" class="car-search" placeholder="Search brand or model…" autocomplete="off">
+<div class="filter-row"><select id="brandFilter"><option value="">ALL BRANDS</option></select><select id="typeFilter"><option value="">ALL TYPES</option></select></div>
+<select id="base" size="7" class="car-list"></select></div>
+<div class="step"><label>02 / BUILD ARCHETYPE</label><div class="seg" id="archetypes"><button data-v="Street" class="on">STREET</button><button data-v="Track">TRACK</button><button data-v="Luxury">LUXURY</button><button data-v="Sleeper">SLEEPER</button></div></div>
+<div class="step"><label>03 / POWER</label><div class="choice-grid" id="power"></div></div>
+<div class="step"><label>04 / EXHAUST</label><div class="choice-grid" id="exhaust"></div></div>
+<div class="step"><label>05 / WHEELS</label><div class="choice-grid" id="wheels"></div></div>
+<div class="step"><label>06 / SUSPENSION</label><div class="choice-grid" id="suspension"></div></div>
+<div class="step"><label>07 / AERO</label><div class="choice-grid" id="aero"></div></div>
+<div class="step"><label>08 / PAINT</label><div class="swatches" id="paint"></div></div>
+</aside>
+<div class="build-stage">
+<div class="build-top"><span id="buildName">Porsche 911 Carrera</span><span id="buildCost">$128,000 BUILD</span></div>
+<div class="car-display" id="carDisplay"><div class="car-shadow"></div><div class="display-car"><div class="d-roof"></div><div class="d-glass"></div><div class="d-body"></div><div class="d-wing" id="wing"></div><div class="d-wheel dw1"></div><div class="d-wheel dw2"></div><div class="d-light"></div></div><div class="paint-name" id="paintName">OBSIDIAN</div></div>
+<div class="score-panel">
+<div class="mega-score"><small>CARLAB<br>SCORE</small><strong id="score">91</strong><span>/100</span></div>
+<div class="score-details"><h3 id="verdict">Certified weapon.</h3><p id="verdictText">Fast, clean, and dangerous enough to make the group chat argue.</p><div class="meters"><div><span>POWER</span><b><i id="mPower"></i></b><strong id="nPower"></strong></div><div><span>HANDLING</span><b><i id="mHandling"></i></b><strong id="nHandling"></strong></div><div><span>STYLE</span><b><i id="mStyle"></i></b><strong id="nStyle"></strong></div><div><span>DAILY</span><b><i id="mDaily"></i></b><strong id="nDaily"></strong></div></div></div>
+</div>
+<div class="build-actions"><button class="primary" onclick="saveBuild()">＋ SAVE TO GARAGE</button><button class="secondary" onclick="shareBuild()">↗ SHARE BUILD</button><button class="iconbtn" onclick="randomBuild()" title="Random build">⚄</button></div>
+</div>
+</div>
 </section>
 
-<section id="guess" class="section">
-  <div class="section-head"><div><div class="eyebrow">03 / GUESS</div><h2>Guess the car.</h2></div><p>One clue. Four choices. Keep your streak alive.</p></div>
-  <div class="panel quiz"><div class="quiz-meta"><span id="qCount">QUESTION 1</span><span>🔥 STREAK <b id="streak">0</b></span></div><div class="mystery-car">?</div><h3 id="clue"></h3><div class="answers" id="answers"></div><div id="quizFeedback"></div><button class="ghost next" onclick="nextQuestion()">Next →</button></div>
+<section id="challenge" class="challenge-section">
+<div class="challenge-card">
+<div class="challenge-copy"><div class="kicker"><i></i> DAILY CHALLENGE <span id="challengeDay"></span></div><h2 id="challengeTitle">THE $80K STREET KING</h2><p id="challengeDesc">Build the highest-scoring street car without breaking the budget.</p><div class="challenge-rules" id="challengeRules"></div><button class="primary" onclick="acceptChallenge()">ACCEPT CHALLENGE →</button></div>
+<div class="challenge-prize"><span>TODAY'S TARGET</span><strong id="targetScore">90+</strong><small>Can you beat it?</small><div class="timer"><span>NEW CHALLENGE IN</span><b id="countdown">--:--:--</b></div></div>
+</div>
+</section>
+
+<section id="battle" class="section">
+<div class="section-title"><div><span>02 — HEAD TO HEAD</span><h2>SETTLE THE <em>ARGUMENT.</em></h2></div><p>Pick two cars. Choose the category. Let CarLab call it.</p></div>
+<div class="battle">
+<div class="fighter"><label>CAR A</label><select id="carA"></select><div class="fighter-score" id="aScore">92</div><div class="fighter-bars" id="aBars"></div></div>
+<div class="versus"><span>VS</span><div></div><small id="battleCategory">OVERALL</small></div>
+<div class="fighter"><label>CAR B</label><select id="carB"></select><div class="fighter-score" id="bScore">91</div><div class="fighter-bars" id="bBars"></div></div>
+</div>
+<div class="battle-cats" id="battleCats"><button class="on" data-cat="score">OVERALL</button><button data-cat="power">POWER</button><button data-cat="handling">HANDLING</button><button data-cat="style">STYLE</button><button data-cat="daily">DAILY</button></div>
+<button class="primary battle-btn" onclick="battle()">RUN THE BATTLE ⚡</button><div class="battle-result" id="battleResult"></div>
+</section>
+
+<section id="games" class="games-section">
+<div class="section-title"><div><span>03 — CAR IQ</span><h2>PROVE YOU <em>KNOW CARS.</em></h2></div><p>Fast rounds. Streaks. Bragging rights.</p></div>
+<div class="games-grid">
+<div class="game-card quiz-card"><div class="game-head"><span>GUESS THE CAR</span><b>🔥 <i id="streak">0</i></b></div><div class="mystery">?</div><h3 id="clue"></h3><div class="answers" id="answers"></div><div class="feedback" id="feedback"></div><button class="textbtn" onclick="nextQ()">NEXT CAR →</button></div>
+<div class="game-card rank-card"><div class="game-head"><span>QUICK RANK</span><small>YOUR TASTE WILL BE JUDGED</small></div><h3>Which one are you taking?</h3><div class="rank-pair"><button onclick="rankPick(0)" id="rank0"></button><b>OR</b><button onclick="rankPick(1)" id="rank1"></button></div><div class="taste" id="taste">Pick one. No fence-sitting.</div></div>
+</div>
 </section>
 
 <section id="garage" class="section">
-  <div class="section-head"><div><div class="eyebrow">04 / GARAGE</div><h2>Your virtual garage.</h2></div><p>Saved locally on your device. No account needed.</p></div><div id="garageGrid" class="garage-grid"></div>
+<div class="section-title"><div><span>04 — YOUR COLLECTION</span><h2>DREAM <em>GARAGE.</em></h2></div><div class="garage-meta"><b id="garageCount">0</b><span>CARS SAVED</span></div></div>
+<div class="garage-grid" id="garageGrid"></div>
 </section>
 
-<section class="monetize"><div><div class="eyebrow">REVENUE-READY</div><h2>Free game.<br><em>Real business.</em></h2><p>This area is prepared for future approved automotive affiliates, sponsorships and unobtrusive advertising after CarLab earns traffic.</p></div><div class="ad-placeholder">FUTURE PARTNER / AD SPACE<br><small>No fake ad code. Add only after approval.</small></div></section>
+<section class="premium">
+<div class="premium-glow"></div><div><span class="protag">CARLAB // PRO — COMING LATER</span><h2>FOR PEOPLE WHO<br>TAKE CARS <em>TOO SERIOUSLY.</em></h2><p>More garage slots, deeper builds, exclusive challenges, profile badges and advanced comparison tools. We'll only launch paid features if the free experience earns it.</p></div>
+<div class="pro-box"><span>PLANNED PRO FEATURES</span><ul><li>Unlimited garage</li><li>Advanced build cards</li><li>Exclusive challenges</li><li>Profile & badges</li><li>Deeper comparisons</li></ul><button disabled>NOT FOR SALE YET</button></div>
+</section>
+
+<section class="partner"><span>PARTNER / AFFILIATE ZONE</span><p>Reserved for useful automotive products and sponsors later — not random junk.</p></section>
 </main>
-<footer><div class="brand"><span>CL</span> CarLab</div><p>Build. Battle. Flex. <span id="year"></span></p><p class="fine">CarLab scores are entertainment ratings, not official manufacturer specifications.</p></footer>
-<script src="app.js"></script>
+<footer><a class="logo"><span>CL</span><b>CarLab</b></a><p>BUILD. BATTLE. FLEX.</p><small>CarLab scores are entertainment ratings, not official manufacturer specifications. Vehicle names belong to their respective owners.</small></footer>
+<div class="toast" id="toast"></div>
+<script src="cars.js"></script><script src="app.js"></script>
 </body></html>

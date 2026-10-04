@@ -28,7 +28,7 @@ function renderProfile(){let li=levelInfo(),g=JSON.parse(localStorage.getItem("c
 function renameDriver(){let n=prompt("Choose your CarLab driver name:",profile.name);if(n&&n.trim()){profile.name=n.trim().slice(0,24);saveProfile();renderProfile();toast("Driver profile updated ✓")}}
 
 
-function populateSelect(sel,list){let old=sel.value;sel.innerHTML="";list.forEach(c=>sel.add(new Option(`${c.brand} ${c.model}  ·  ${c.category}`,c.name)));if(list.some(c=>c.name===old))sel.value=old}
+function populateSelect(sel,list){let old=sel.value;sel.innerHTML="";list.forEach(c=>sel.add(new Option(`${c.brand} ${c.model}  ·  ${c.category}`,c.name)));if(list.some(c=>c.name===old))sel.value=old;else if(list.length)sel.selectedIndex=0}
 function filterCars(){let q=$("carSearch").value.toLowerCase().trim(),br=$("brandFilter").value,ty=$("typeFilter").value;let list=cars.filter(c=>(!q||(c.name+" "+c.category).toLowerCase().includes(q))&&(!br||c.brand===br)&&(!ty||c.category===ty));populateSelect($("base"),list);$("rosterCount").textContent=list.length+" / "+cars.length;if(list.length)calc()}
 
 function init(){
@@ -48,7 +48,7 @@ function init(){
 function renderChoices(){Object.keys(mods).forEach(k=>[...$(k).children].forEach((b,i)=>b.classList.toggle("on",i===build[k])))}
 function renderPaint(){[...$("paint").children].forEach((b,i)=>b.classList.toggle("on",i===build.paint))}
 function current(){
- let c=cars.find(x=>x.name===$("base").value), power=c.power,handling=c.handling,style=c.style,daily=c.daily,cost=c.price;
+ let c=cars.find(x=>x.name===$("base").value)||cars[0]; if(!c)return{car:"Loading",brand:"CarLab",category:"Sports",basePrice:0,cost:0,power:0,handling:0,style:0,daily:0,score:0,arch:build.arch,paint:paints[build.paint][0],mods:{...build}}; let power=c.power,handling=c.handling,style=c.style,daily=c.daily,cost=c.price;
  Object.keys(mods).forEach(k=>cost+=mods[k][build[k]][2]);
  power+=mods.power[build.power][1]+Math.round(mods.exhaust[build.exhaust][1]/2);
  handling+=mods.wheels[build.wheels][1]+mods.suspension[build.suspension][1]+Math.round(mods.aero[build.aero][1]/2);

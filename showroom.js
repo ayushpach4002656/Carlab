@@ -3,8 +3,7 @@ import {OrbitControls} from 'https://cdn.jsdelivr.net/npm/three@0.180.0/examples
 import {GLTFLoader} from 'https://cdn.jsdelivr.net/npm/three@0.180.0/examples/jsm/loaders/GLTFLoader.js';
 
 const viewers={}; let spin=false; let currentBuild=null;
-const modelFor=c=>{c=(c||'').toLowerCase();if(c.includes('truck'))return'truck';if(c.includes('suv'))return'suv';if(c.includes('wagon'))return'wagon';if(c.includes('hot hatch'))return'hatch';if(c.includes('roadster'))return'roadster';if(c.includes('supercar')||c.includes('hypercar')||c.includes('track'))return'supercar';return'sport'};
-const paintMap={OBSIDIAN:0x171a20,ALPINE:0xe9edf0,CRIMSON:0xb9142d,ELECTRIC:0xd7ff38,ULTRAVIOLET:0x6237ff,SKYLINE:0x2374ff};
+const modelFor=c=>'CarConcept';const paintMap={OBSIDIAN:0x171a20,ALPINE:0xe9edf0,CRIMSON:0xb9142d,ELECTRIC:0xd7ff38,ULTRAVIOLET:0x6237ff,SKYLINE:0x2374ff};
 function makeViewer(canvas,hero=false){
  const renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true});renderer.setPixelRatio(Math.min(devicePixelRatio,2));renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.25;renderer.shadowMap.enabled=true;
  const scene=new THREE.Scene();scene.fog=new THREE.FogExp2(0x080b0f,.055);const camera=new THREE.PerspectiveCamera(hero?32:34,1,.1,100);camera.position.set(hero?6.7:6.2,hero?3.0:2.6,hero?6.8:6.4);

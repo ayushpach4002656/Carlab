@@ -7,14 +7,14 @@
 <meta property="og:title" content="CarLab — Build. Battle. Flex.">
 <meta property="og:description" content="Build your dream car, earn a CarLab score, battle friends, and grow your garage.">
 <title>CarLab — Build. Battle. Flex.</title>
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="./styles.css?v=4.0.0">
 </head>
 <body>
 <div class="noise"></div><div class="cursor-glow" id="glow"></div>
 <header>
 <a class="logo" href="#home"><span>CL</span><b>CarLab</b><small>BETA</small></a>
 <nav><a href="#build">Build</a><a href="#challenge">Challenge</a><a href="#battle">Battle</a><a href="#games">Games</a><a href="#garage">Garage</a></nav>
-<div class="header-right"><span class="streak">🔥 <b id="headerStreak">0</b></span><button class="mini primary" onclick="go('build')">BUILD NOW</button></div>
+<div class="header-right"><span class="level-pill">LV <b id="headerLevel">1</b></span><span class="streak">🔥 <b id="headerStreak">0</b></span><button class="mini primary" onclick="go('build')">BUILD NOW</button></div>
 </header>
 
 <main>
@@ -60,7 +60,7 @@
 <div class="mega-score"><small>CARLAB<br>SCORE</small><strong id="score">91</strong><span>/100</span></div>
 <div class="score-details"><h3 id="verdict">Certified weapon.</h3><p id="verdictText">Fast, clean, and dangerous enough to make the group chat argue.</p><div class="meters"><div><span>POWER</span><b><i id="mPower"></i></b><strong id="nPower"></strong></div><div><span>HANDLING</span><b><i id="mHandling"></i></b><strong id="nHandling"></strong></div><div><span>STYLE</span><b><i id="mStyle"></i></b><strong id="nStyle"></strong></div><div><span>DAILY</span><b><i id="mDaily"></i></b><strong id="nDaily"></strong></div></div></div>
 </div>
-<div class="build-actions"><button class="primary" onclick="saveBuild()">＋ SAVE TO GARAGE</button><button class="secondary" onclick="shareBuild()">↗ SHARE BUILD</button><button class="iconbtn" onclick="randomBuild()" title="Random build">⚄</button></div>
+<div class="build-actions"><button class="primary" onclick="saveBuild()">＋ SAVE TO GARAGE</button><button class="secondary" onclick="shareBuild()">↗ SHARE CHALLENGE</button><button class="secondary" onclick="copyBuildCard()">▣ COPY BUILD CARD</button><button class="iconbtn" onclick="randomBuild()" title="Random build">⚄</button></div>
 </div>
 </div>
 </section>
@@ -93,7 +93,27 @@
 
 <section id="garage" class="section">
 <div class="section-title"><div><span>04 — YOUR COLLECTION</span><h2>DREAM <em>GARAGE.</em></h2></div><div class="garage-meta"><b id="garageCount">0</b><span>CARS SAVED</span></div></div>
+<div class="garage-summary" id="garageSummary">
+<div><span>GARAGE VALUE</span><b id="garageValue">$0</b></div>
+<div><span>AVG SCORE</span><b id="garageAvg">—</b></div>
+<div><span>TOP BUILD</span><b id="garageTop">—</b></div>
+<div><span>FAVORITE ARCHETYPE</span><b id="garageArch">—</b></div>
+</div>
 <div class="garage-grid" id="garageGrid"></div>
+</section>
+
+
+<section id="profile" class="section profile-section">
+<div class="section-title"><div><span>05 — DRIVER PROFILE</span><h2>YOUR CARLAB <em>REP.</em></h2></div><p>Builds, streaks and challenges earn XP. Your profile lives on this device for now.</p></div>
+<div class="profile-grid">
+  <div class="driver-card">
+    <div class="driver-top"><div class="driver-avatar">CL</div><div><span>CARLAB DRIVER</span><h3 id="driverName">ANONYMOUS DRIVER</h3><button class="textbtn inline" onclick="renameDriver()">EDIT NAME</button></div></div>
+    <div class="level-big"><small>LEVEL</small><b id="profileLevel">1</b><span id="rankName">ROOKIE</span></div>
+    <div class="xpbar"><i id="xpFill"></i></div><div class="xptext"><span id="xpNow">0 XP</span><span id="xpNext">100 XP TO NEXT</span></div>
+    <div class="profile-stats"><div><b id="pBuilds">0</b><span>BUILDS</span></div><div><b id="pBest">—</b><span>BEST SCORE</span></div><div><b id="pStreak">0</b><span>QUIZ STREAK</span></div><div><b id="pChallenges">0</b><span>CHALLENGES</span></div></div>
+  </div>
+  <div class="achievement-panel"><div class="game-head"><span>ACHIEVEMENTS</span><small id="achievementCount">0 / 8 UNLOCKED</small></div><div id="achievementGrid" class="achievement-grid"></div></div>
+</div>
 </section>
 
 <section class="premium">
@@ -105,5 +125,5 @@
 </main>
 <footer><a class="logo"><span>CL</span><b>CarLab</b></a><p>BUILD. BATTLE. FLEX.</p><small>CarLab scores are entertainment ratings, not official manufacturer specifications. Vehicle names belong to their respective owners.</small></footer>
 <div class="toast" id="toast"></div>
-<script src="cars.js"></script><script src="app.js"></script>
+<script src="./cars.js?v=4.0.0"></script><script src="./app.js?v=4.0.0"></script>
 </body></html>

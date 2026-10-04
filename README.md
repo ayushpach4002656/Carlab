@@ -1,20 +1,23 @@
-# CarLab V3 MEGA ROSTER
+# CarLab V4 — Retention Layer
 
-This build contains **277 cars** across **45 brands**, with a searchable/filterable car picker.
+Built on V3.1 with the 277-car roster.
 
-Important: power/handling/style/daily values and build prices are **CarLab game ratings/economy values**, not official manufacturer specifications or live market prices.
+New:
+- Driver profile stored locally
+- XP and levels
+- 8 achievements
+- XP for builds, elite builds, quiz answers and daily challenges
+- Garage value, average score, top build and favorite archetype
+- Unique build IDs
+- Copyable build cards
+- Header level badge
+- Cache-busted V4 assets
+- Existing 277-car searchable/filterable roster remains
 
-Files to replace/upload in GitHub:
+Upload/replace:
 - index.html
 - styles.css
 - app.js
-- cars.js  ← new file
+- cars.js
 
-V3 architecture improvement:
-- Vehicle data now lives separately in cars.js.
-- Search by model/brand.
-- Filter by brand and type.
-- Existing builder, modifications, challenges, battle, games, garage, sharing, and responsive UI remain.
-- Future roster additions no longer require rewriting core game logic.
-
-Do not monetize yet solely because the roster is larger. Validate usage and retention first.
+No backend/account/payment system yet. This is intentionally local-first so the experience can be validated before adding infrastructure or asking users to pay.

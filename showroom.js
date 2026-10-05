@@ -19,7 +19,7 @@ function apply(){
  group.position.set(0,0,0);
  group.scale.set(1,1,1);
 } function frame(){controls.reset();camera.position.set(hero?6.7:6.2,hero?3:2.6,hero?6.8:6.4);controls.target.set(0,.7,0);controls.update()}
- function tick(){requestAnimationFrame(tick);controls.autoRotate=hero||spin;controls.update();renderer.render(scene,camera)}tick();load(hero?'supercar':'sport');return{load,apply,frame,controls,group}
+ function tick(){requestAnimationFrame(tick);controls.autoRotate=hero||spin;controls.update();renderer.render(scene,camera)}tick();load('CarConcept');return{load,apply,frame,controls,group}
 }
 try{let c=document.getElementById('car3d');if(c)viewers.main=makeViewer(c,false);let h=document.getElementById('hero3d');if(h)viewers.hero=makeViewer(h,true)}catch(e){console.error(e);let s=document.getElementById('modelStatus');if(s)s.textContent='3D NOT SUPPORTED ON THIS DEVICE'}
 window.addEventListener('carlab:build',e=>{currentBuild=e.detail;let t=modelFor(currentBuild);viewers.main?.load(t);viewers.main?.apply()});
